@@ -15,8 +15,6 @@ gmailButton.onclick = () => {
 }
 
 
-
-
 const parentBlock = document.querySelector(".parent_block");
 const childBlock = document.querySelector(".child_block");
 
@@ -47,20 +45,17 @@ const moveBlock = () => {
 moveBlock()
 
 
-
-
-
-
 const time = document.querySelector("#seconds")
 const start = document.querySelector("#start")
 const stop = document.querySelector("#stop")
+const reset = document.querySelector("#reset")
 
 let count = 0
 let interval
 
-start.addEventListener("click", ()  => {
+start.addEventListener("click", () => {
     clearInterval(interval)
-    interval= setInterval(() => {
+    interval = setInterval(() => {
         count++
         time.innerHTML = `${count}`
     }, 1000)
@@ -68,6 +63,10 @@ start.addEventListener("click", ()  => {
 stop.addEventListener("click", () => {
     clearInterval(interval)
 })
+reset.addEventListener("click", () => {
+    count = 0
+})
+
 
 
 
