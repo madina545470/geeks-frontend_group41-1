@@ -15,19 +15,61 @@ gmailButton.onclick = () => {
 }
 
 
-let position = 0;
-const parentWidth = 449;
+
+
+const parentBlock = document.querySelector(".parent_block");
 const childBlock = document.querySelector(".child_block");
 
-function moveBlock() {
-    if (position < parentWidth) {
-        position++
-        childBlock.style.left =`${position}px`;
-        requestAnimationFrame(moveBlock)
+let positionX = 0, positionY = 0
+
+const offsetWidth = parentBlock.offsetWidth - childBlock.offsetWidth;
+const offsetHeight = parentBlock.offsetHeight - childBlock.offsetHeight;
+
+const moveBlock = () => {
+    if (positionX < offsetWidth && positionY === 0) {
+        positionX++
+        childBlock.style.left = `${positionX}px`
+        // requestAnimationFrame(moveBlock)
+    } else if (positionX >= offsetWidth && positionY < offsetHeight) {
+        positionY++
+        childBlock.style.top = `${positionY}px`
+        // requestAnimationFrame(moveBlock)
+    } else if (positionX > 0 && positionY === offsetHeight) {
+        positionX--
+        childBlock.style.left = `${positionX}px`
+    } else if (positionX === 0 && positionY > 0) {
+        positionY--
+        childBlock.style.top = `${positionY}px`
     }
+    setTimeout(moveBlock, 1)
 }
 
 moveBlock()
+
+
+
+
+
+
+const time = document.querySelector("#seconds")
+const start = document.querySelector("#start")
+const stop = document.querySelector("#stop")
+
+let count = 0
+let interval
+
+start.addEventListener("click", ()  => {
+    clearInterval(interval)
+    interval= setInterval(() => {
+        count++
+        time.innerHTML = `${count}`
+    }, 1000)
+})
+stop.addEventListener("click", () => {
+    clearInterval(interval)
+})
+
+
 
 
 
