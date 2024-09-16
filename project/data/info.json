@@ -1,0 +1,10 @@
+
+  {
+    "name": "Madina",
+    "surname": "Matieva",
+    "age": 21,
+    "family": {
+      "mother": "Aigulya",
+      "father": "Murat"
+    }
+  }

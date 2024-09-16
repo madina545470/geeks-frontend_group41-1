@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Tony Stark",
+    "age": "42",
+    "photo": "https://i.ytimg.com/vi/W54Y0cn78NY/maxresdefault.jpg",
+    "bio": "Tony Stark is the wealthy son of industrialist."
+  },
+  {
+    "name": "Peter Parker",
+    "age": "21",
+    "photo": "https://www.usatoday.com/gcdn/-mm-/cc053686530ce446f0a27dc352961fac33dd12ac/c=1144-81-2630-920/local/-/media/2017/06/26/USATODAY/USATODAY/636340759929048028-XXX-SPIDER-MAN-HOMECOMING-87249008.JPG",
+    "bio": "When Peter was 15 years old, he attended the public sudden shock."
+  },
+  {
+    "name": "DeadPool",
+    "age": "34",
+    "photo": "https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/1326/1371326-i-c802b043bc6b",
+    "bio": "Welcome to the Deadpool character bio, nerds! I mean...True Believers! "
+  },
+  {
+    "name": "Black Panther",
+    "age": "37",
+    "photo": "https://techprincess.it/wp-content/uploads/2022/11/Black-panther-Wakanda-forever-canzoni.jpg",
+    "bio": "Black Panther is the first black superhero for Marvel comics.  "
+  }
+]
+

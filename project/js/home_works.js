@@ -68,9 +68,86 @@ reset.addEventListener("click", () => {
 })
 
 
+// document.addEventListener(`DOMContentLoaded`, () => {
+//     const charactersBlock = document.querySelector(`.characters_block`)
+//     const request = new XMLHttpRequest();
+//     request.open("GET", `../data/persons.json`);
+//     request.setRequestHeader(`Content-Type`, `application/json`);
+//     request.send();
+//
+//     request.onload = () => {
+//         if(request.status >=200 && request.status < 400) {
+//             console.log(`Response text:`, request.responseText)
+//             const persons= JSON.parse(request.responseText)
+//
+//             persons.forEach((character) => {
+//                 const characterContainer = document.createElement(`div`);
+//                 characterContainer.classList.add("character_container");
+//
+//                 characterContainer.innerHTML = `
+//                 <div class "character_photo">
+//                     <img src="${character.photo}" alt="${character.name}"></img>
+//
+//                 </div>
+//                 <h2>${character.name}</h2>
+//                 <p id="age_part" Age:${character.age}</p>
+//                 <p id="bio_part" Bio:${character.bio}</p>
+//
+//              `;
+//                 const h2Element =characterContainer.querySelector(`h2`);
+//                 const pElements=characterContainer.querySelectorAll(`p`);
+//
+//              if (h2Element){
+//                  h2Element.style.color = `white`
+//              }
+//              pElements.forEach(p=>{
+//                  p.style.color = `white`
+//              });
+//              charactersBlock.append(characterContainer);
+//             });
+//         }else{
+//             console.error(`Request failed`, request.status);
+//         }
+//     };
+//     request.onerror=()=>{
+//         console.error(`Request failed`);
+//     }
+// })
+//
+//
+//
 
 
+const charactersContainer = document.querySelector('.character_container');
+const request = new XMLHttpRequest();
+request.open('GET', '../data/persons.json');
+request.setRequestHeader('Content-type', 'application/json');
+request.send();
 
+request.onload = () => {
+    const data = JSON.parse(request.response);
+    data.forEach(element => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+       <h2>${element.name}</h2>
+       <img src="${element.photo}" alt="${element.name}" class="photo">   
+       <span>${element.age}</span>
+       <p>${element.bio}</p>
+    `
+        charactersContainer.appendChild(card)
+    })
+}
+
+const request2 = new XMLHttpRequest();
+request2.open('GET', '../data/info.json');
+request2.setRequestHeader('Content-type', 'application/json');
+request2.send();
+
+request2.onload = () => {
+    const info=JSON.parse(request2.response)
+    console.log(info)
+}
 
 
 
