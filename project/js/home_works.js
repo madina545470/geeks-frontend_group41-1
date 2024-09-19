@@ -118,6 +118,8 @@ reset.addEventListener("click", () => {
 //
 
 
+
+
 const charactersContainer = document.querySelector('.character_container');
 const request = new XMLHttpRequest();
 request.open('GET', '../data/persons.json');
@@ -138,6 +140,10 @@ request.onload = () => {
         charactersContainer.appendChild(card)
     })
 }
+
+
+
+
 
 const request2 = new XMLHttpRequest();
 request2.open('GET', '../data/info.json');

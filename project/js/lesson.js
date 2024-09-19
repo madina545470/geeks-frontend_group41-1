@@ -59,3 +59,52 @@ const autoSlider = () => {
     showTabContent(index)
 }
 setInterval(autoSlider, 3000)
+
+
+//CONVERTER
+
+const usdInput = document.querySelector("#usd");
+const somInput = document.querySelector("#som");
+const eurInput = document.querySelector("#eur");
+
+// DRY- Do not repeat yourself
+// KISS - Keep it super simple
+
+const converter = (element, targetElement, secondElement, currency) => {
+    element.oninput = () => {
+        const request = new XMLHttpRequest()
+        request.open('GET', '../data/converter.json');
+        request.setRequestHeader('Content-type', 'application/json');
+        request.send();
+
+        request.onload = () => {
+            const data = JSON.parse(request.response);
+            if (currency === `som`) {
+               targetElement.value = (element.value / data.usd).toFixed(2)
+                secondElement.value = (element.value / data.eur).toFixed(2)
+            }
+            if (currency === `usd`) {
+                targetElement.value = (element.value * data.usd).toFixed(2)
+                secondElement.value = (element.value * 0.93).toFixed(2)
+            }
+            if (currency === `eur`){
+                targetElement.value = (element.value * data.eur).toFixed(2);
+                secondElement.value = (element.value * 1.1).toFixed(2);
+            }
+            if (element.value === ``){
+                targetElement.value = ``
+                secondElement.value = ``
+            }
+            }
+        }
+}
+converter(somInput, usdInput, eurInput, "som");
+converter(usdInput, somInput, eurInput, "usd");
+converter(eurInput,somInput, usdInput, "eur");
+
+
+
+
+
+
+
