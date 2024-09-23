@@ -80,27 +80,102 @@ const converter = (element, targetElement, secondElement, currency) => {
         request.onload = () => {
             const data = JSON.parse(request.response);
             if (currency === `som`) {
-               targetElement.value = (element.value / data.usd).toFixed(2)
+                targetElement.value = (element.value / data.usd).toFixed(2)
                 secondElement.value = (element.value / data.eur).toFixed(2)
             }
             if (currency === `usd`) {
                 targetElement.value = (element.value * data.usd).toFixed(2)
                 secondElement.value = (element.value * 0.93).toFixed(2)
             }
-            if (currency === `eur`){
+            if (currency === `eur`) {
                 targetElement.value = (element.value * data.eur).toFixed(2);
                 secondElement.value = (element.value * 1.1).toFixed(2);
             }
-            if (element.value === ``){
+            if (element.value === ``) {
                 targetElement.value = ``
                 secondElement.value = ``
             }
-            }
         }
+    }
 }
 converter(somInput, usdInput, eurInput, "som");
 converter(usdInput, somInput, eurInput, "usd");
-converter(eurInput,somInput, usdInput, "eur");
+converter(eurInput, somInput, usdInput, "eur");
+
+
+// CARD SWITCHER
+
+const card = document.querySelector(".card");
+const btnPrev = document.querySelector("#btn-prev");
+const btnNext = document.querySelector("#btn-next");
+
+let cardId = 1
+
+const getrequest = () => {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${cardId}`)
+        .then(response => response.json())
+        .then(data => {
+            card.innerHTML = `
+           <p>${data.title}</p>
+           <p style="color: ${data.completed ? `green` : `red`}">${data.completed}</p>
+           <span>${data.id}</span>
+           `
+        })
+}
+
+const slideCard = (button, current) => {
+    getrequest()
+    button.onclick = () => {
+        switch (current) {
+            case `next`:
+                if (cardId === 200) {
+                    cardId = 0
+                }
+                cardId++
+                break
+            case `prev`:
+                if (cardId === 1) {
+                    cardId = 201
+                }
+                cardId = cardId - 1
+        }
+        getrequest()
+    }
+}
+slideCard(btnNext, `next`)
+slideCard(btnPrev, `prev`)
+
+
+
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('There is a problem', error);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
