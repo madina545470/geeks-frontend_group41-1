@@ -1,13 +1,17 @@
 
 import React from 'react';
-import MainPage from './pages/MainPage';
+import Header from './components/Header';
+import Content from './components/Content';
+import Footer from './components/Footer';
 
 const App = () => {
-  return (
-      <div>
-        <MainPage />
-      </div>
-  );
+    return (
+        <div>
+            <Header />
+            <Content />
+            <Footer />
+        </div>
+    );
 };
 
 export default App;
